@@ -3,7 +3,7 @@ import NavBar from './navBar';
 import { connect } from 'react-redux';
 
 
-let Header = ({dispatch}) => {
+let Header = ({ dispatch }) => {
   return (
     <header>
       <div id="title">Movie Finder</div>
