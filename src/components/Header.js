@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 let Header = ({dispatch}) => {
   return (
     <header>
-      Movie Finder
+      <div id="title">Movie Finder</div>
       <NavBar dispatch={dispatch}/>
     </header>
   )

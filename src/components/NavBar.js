@@ -2,7 +2,7 @@ import React from 'react';
 import { searchMovie } from './../action/movieActions';
 import { connect } from 'react-redux';
 
-const NavBar = ({dispatch}) => {
+const NavBar = ({ dispatch }) => {
   let input;
 
   return (

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Movie = ({movie}) => {
+const Movie = ({ movie }) => {
   const posterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
   return (
-    <div>
+    <div className="movie">
       <img src={posterUrlFirstPiece + movie['poster_path']} className='poster'/> <br />
-      {movie.id} <br />
-      {movie.title} <br /> <br />
+      Title: {movie.title} <br /> <br />
+      ID: {movie.id} <br />
     </div>
   )
 }
