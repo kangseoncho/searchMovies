@@ -3,9 +3,6 @@ const apiURL = `https://api.themoviedb.org/4/list/1?api_key=`;
 const apiKey = '1ec38a1fbf3f19ded30cccb862f0366f';
 const PosterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
 
-const testURL = `https://api.themoviedb.org/4/list/2?api_key=`
-
-
 const movieController = {
   getMovieAPI(req, res) {
     fetch(apiURL + apiKey)

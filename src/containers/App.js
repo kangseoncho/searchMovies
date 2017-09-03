@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './../components/header';
 import MovieContainer from './moviecontainer';
+import { setInitialState } from './../action/movieActions';
+import { connect } from 'react-redux';
 const port = 3000;
 
 class App extends Component {
@@ -8,12 +10,8 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    fetch(`http://localhost:${port}/api`)
-      .then(response => response.json())
-      .then(json => {
-        localStorage.setItem('allMovies', JSON.stringify(json));
-      })
+  componentWillMount () {
+    this.props.dispatch(setInitialState(`http://localhost:${port}/api`))
   }
 
   render() {
@@ -26,4 +24,6 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+export default connect()(App);
