@@ -22,10 +22,10 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
-      // {
-      //   test: /\.scss$/,
-      //   loaders: ['style-loader', 'css-loader', 'sass-loader']
-      // },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      },
       {
         test: /\.jsx$/,
         loader: 'babel-loader',
