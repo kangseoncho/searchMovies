@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './../components/Header';
-import MovieContainer from './Moviecontainer';
+import Header from './../components/header';
+import MovieContainer from './moviecontainer';
 const port = 3000;
 
 class App extends Component {
