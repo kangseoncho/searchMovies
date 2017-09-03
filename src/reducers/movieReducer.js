@@ -5,7 +5,7 @@ const searchMovie= (state, input) => {
     return initialMovieList;
   }
   else {
-    return state.filter((movie, index) => {
+    return initialMovieList.filter((movie, index) => {
       return movie['id'].toString().includes(input.toString()) ||
         movie['title'].toLowerCase().includes(input.toLowerCase());
     });

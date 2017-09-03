@@ -25080,7 +25080,7 @@ var searchMovie = function searchMovie(state, input) {
   if (input.length === 0) {
     return initialMovieList;
   } else {
-    return state.filter(function (movie, index) {
+    return initialMovieList.filter(function (movie, index) {
       return movie['id'].toString().includes(input.toString()) || movie['title'].toLowerCase().includes(input.toLowerCase());
     });
     //return tempMovieList;
@@ -25187,7 +25187,7 @@ exports = module.exports = __webpack_require__(238)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  height: 15%;\n  position: fixed;\n  background-color: cornflowerblue;\n  width: 100%; }\n  header #title {\n    font-size: 30px; }\n\nnav {\n  background-color: yellow; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    margin-left: 2%;\n    margin-right: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  height: 15%;\n  position: fixed;\n  background-color: white;\n  width: 100%; }\n  header #title {\n    font-size: 30px; }\n  header div {\n    margin-left: 5%;\n    margin-right: 5%; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    margin-left: 2%;\n    margin-right: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n", ""]);
 
 // exports
 

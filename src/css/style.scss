@@ -10,16 +10,19 @@ header {
   display: flex;
   height: 15%;
   position: fixed;
-  background-color: cornflowerblue;
+  background-color: white;
   width: 100%;
 
   #title {
     font-size: 30px;
   }
-}
 
-nav {
-  background-color: $testVar;
+  div {
+    margin: {
+      left: 5%;
+      right: 5%;
+    }
+  }
 }
 
 .movieList {
