@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MovieList from './../components/movieList';
+import movieList from './../components/movieList';
 
 const mapStateToProps = (state) => {
   return {
@@ -8,6 +8,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const MovieContainer = connect(mapStateToProps)(MovieList);
+const MovieContainer = connect(mapStateToProps)(movieList);
 
 export default MovieContainer;
