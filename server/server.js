@@ -5,10 +5,10 @@ const path = require('path');
 const port = 3000;
 const movieController = require('./movieController');
 
-app.use('/', express.static(path.join(__dirname, "./../public")));
-app.get('/', (req, res) => { return });
 app.use(bodyParser.json());
 
+app.use('/', express.static(path.join(__dirname, "./../public")));
+app.get('/', (req, res) => { return });
 
 app.get('/api', movieController.getMovieAPI);
 
