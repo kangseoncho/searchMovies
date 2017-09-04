@@ -4,7 +4,8 @@ import movieList from './../components/movieList';
 
 const mapStateToProps = (state) => {
   return {
-    movie: state.movie
+    movie: state.movie,
+    showModal: state.showModal
   }
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import Movie from './movie';
+// import ModalContainer from './../containers/modalContainer';
 
-const MovieList = (props) => {
+let MovieList = (props) => {
   return (
     <div className="movieList">
-      {props.movie.map((movie, i) => {
-        return <Movie key={i} movie={movie} />
+      {props.movie.map((movieInfo, i) => {
+        return <Movie showModal={props.showModal} dispatch={props.dispatch} key={i} movieInfo={movieInfo} index={i} />
       })}
     </div>
   )

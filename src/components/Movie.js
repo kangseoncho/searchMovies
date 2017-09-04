@@ -1,12 +1,21 @@
 import React from 'react';
+import ReactModal from 'react-modal';
+import { displayModal } from './../action/modalActions';
+import MovieModal from './movieModal';
 
-const Movie = ({ movie }) => {
+const Movie = (props) => {
   const posterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
+
   return (
-    <div className="movie">
-      <img src={posterUrlFirstPiece + movie['poster_path']} className='poster'/> <br />
-      Title: {movie.title} <br /> <br />
-      ID: {movie.id} <br />
+    <div className="movie" onClick={ () => props.dispatch(displayModal(true, props.index)) }>
+
+      <ReactModal isOpen={props.showModal[props.index]} contentLabel="Movie Detail Modal">
+        <MovieModal movieInfo={props.movieInfo} dispatch={props.dispatch} index={props.index} />
+      </ReactModal>
+
+      <img src={posterUrlFirstPiece + props.movieInfo['poster_path']} className='poster'/> <br />
+      Title: {props.movieInfo.title} <br />
+      ID: {props.movieInfo.id} <br />
     </div>
   )
 }

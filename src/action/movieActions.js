@@ -10,6 +10,7 @@ export const setInitialState = (url) => {
         payload: json
       })
     })
+    .catch((err) => console.log(err))
   }
 }
 

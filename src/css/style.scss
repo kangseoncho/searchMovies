@@ -8,6 +8,7 @@ body {
 
 header {
   display: flex;
+  align-items: center;
   height: 15%;
   position: fixed;
   background-color: white;
@@ -15,12 +16,19 @@ header {
 
   #title {
     font-size: 30px;
+    cursor: pointer;
   }
 
   div {
     margin: {
       left: 5%;
       right: 5%;
+    }
+  }
+
+  nav {
+    button, input {
+      font-size: 22px;
     }
   }
 }
@@ -35,14 +43,56 @@ header {
 
   .movie {
     width: $imageWidth;
+    cursor: pointer;
+
     margin: {
       left: $movieSideMargin;
       right: $movieSideMargin;
+      bottom: 2%;
     }
 
     img {
       height: $imageHeight;
       width: $imageWidth;
+    }
+  }
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+
+  div {
+    margin: {
+      left: $modalContentSideMargin;
+      right: $modalContentSideMargin;
+    }
+
+    .modalPoster {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .movieInformation div {
+    margin: {
+      bottom: 5%;
+    }
+
+    span {
+      color: grey;
+      font-weight: bold;
+    }
+  }
+
+  .exitModal {
+    justify-content: flex-end;
+
+    .exitModalButton {
+      border: none;
+      font-size: $modalExitButtonSize;
+      background-color: white;
+      cursor: pointer;
     }
   }
 }

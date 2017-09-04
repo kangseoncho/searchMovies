@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 let Header = ({ dispatch }) => {
   return (
     <header>
-      <div id="title">Movie Finder</div>
+      <div id="title" onClick={() => window.scrollTo(0, 0)}>Movie Finder</div>
       <NavBar dispatch={dispatch}/>
     </header>
   )
