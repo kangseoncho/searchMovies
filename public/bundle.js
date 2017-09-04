@@ -10429,7 +10429,7 @@ module.exports = getHostComponentFromComposite;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var setInitialState = exports.setInitialState = function setInitialState(url) {
+var setInitialMovieState = exports.setInitialMovieState = function setInitialMovieState(url) {
   return function (dispatch) {
     return fetch(url).then(function (response) {
       return response.json();
@@ -10449,6 +10449,14 @@ var searchMovie = exports.searchMovie = function searchMovie(input) {
   return {
     type: 'SEARCH_MOVIE',
     payload: input
+  };
+};
+
+var displayDetail = exports.displayDetail = function displayDetail(bool, index) {
+  return {
+    type: 'DISPLAY_DETAIL',
+    payload: bool,
+    payloadIndex: index
   };
 };
 
@@ -23474,7 +23482,7 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.props.dispatch((0, _movieActions.setInitialState)('http://localhost:' + port + '/api'));
+      this.props.dispatch((0, _movieActions.setInitialMovieState)('http://localhost:' + port + '/api'));
     }
   }, {
     key: 'render',
@@ -24962,8 +24970,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    movie: state.movie,
-    showModal: state.showModal
+    movie: state.movie
   };
 };
 
@@ -24992,14 +24999,13 @@ var _movie2 = _interopRequireDefault(_movie);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import ModalContainer from './../containers/modalContainer';
-
 var MovieList = function MovieList(props) {
+
   return _react2.default.createElement(
     'div',
     { className: 'movieList' },
     props.movie.map(function (movieInfo, i) {
-      return _react2.default.createElement(_movie2.default, { showModal: props.showModal, dispatch: props.dispatch, key: i, movieInfo: movieInfo, index: i });
+      return _react2.default.createElement(_movie2.default, { dispatch: props.dispatch, key: i, movieInfo: movieInfo, index: i });
     })
   );
 };
@@ -25025,7 +25031,7 @@ var _reactModal = __webpack_require__(246);
 
 var _reactModal2 = _interopRequireDefault(_reactModal);
 
-var _modalActions = __webpack_require__(241);
+var _movieActions = __webpack_require__(87);
 
 var _movieModal = __webpack_require__(254);
 
@@ -25039,11 +25045,11 @@ var Movie = function Movie(props) {
   return _react2.default.createElement(
     'div',
     { className: 'movie', onClick: function onClick() {
-        return props.dispatch((0, _modalActions.displayModal)(true, props.index));
+        return props.dispatch((0, _movieActions.displayDetail)(true, props.index));
       } },
     _react2.default.createElement(
       _reactModal2.default,
-      { isOpen: props.showModal[props.index], contentLabel: 'Movie Detail Modal' },
+      { isOpen: props.movieInfo['showMoreDetail'], contentLabel: 'Movie Detail Modal' },
       _react2.default.createElement(_movieModal2.default, { movieInfo: props.movieInfo, dispatch: props.dispatch, index: props.index })
     ),
     _react2.default.createElement('img', { src: posterUrlFirstPiece + props.movieInfo['poster_path'], className: 'poster' }),
@@ -25118,15 +25124,10 @@ var _movieReducer = __webpack_require__(234);
 
 var _movieReducer2 = _interopRequireDefault(_movieReducer);
 
-var _modalReducer = __webpack_require__(253);
-
-var _modalReducer2 = _interopRequireDefault(_modalReducer);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reducers = (0, _redux.combineReducers)({
-  movie: _movieReducer2.default,
-  showModal: _modalReducer2.default
+  movie: _movieReducer2.default
 });
 
 exports.default = reducers;
@@ -25155,6 +25156,13 @@ var searchMovie = function searchMovie(state, input) {
   }
 };
 
+var displayDetail = function displayDetail(state, action) {
+  return state.map(function (movieInfo, i) {
+    if (action.payloadIndex === i) movieInfo['showMoreDetail'] = action.payload;
+    return movieInfo;
+  });
+};
+
 var movieReducer = function movieReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
@@ -25165,6 +25173,9 @@ var movieReducer = function movieReducer() {
 
     case 'SET_INITIALSTATE':
       return action.payload;
+
+    case 'DISPLAY_DETAIL':
+      return displayDetail(state, action);
 
     default:
       return state;
@@ -25242,7 +25253,7 @@ exports = module.exports = __webpack_require__(238)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  align-items: center;\n  height: 15%;\n  position: fixed;\n  background-color: white;\n  width: 100%; }\n  header #title {\n    font-size: 30px;\n    cursor: pointer; }\n  header div {\n    margin-left: 5%;\n    margin-right: 5%; }\n  header nav button, header nav input {\n    font-size: 22px; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    cursor: pointer;\n    margin-left: 2%;\n    margin-right: 2%;\n    margin-bottom: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n    .movieList .movie span {\n      color: grey;\n      font-weight: bold; }\n\n.modal {\n  display: flex;\n  justify-content: center; }\n  .modal div {\n    margin-left: 3%;\n    margin-right: 3%; }\n    .modal div .modalPoster {\n      height: 100%;\n      width: 100%; }\n  .modal .movieInformation div {\n    margin-bottom: 5%; }\n    .modal .movieInformation div span {\n      color: grey;\n      font-weight: bold; }\n  .modal .exitModal {\n    justify-content: flex-end; }\n    .modal .exitModal .exitModalButton {\n      border: none;\n      font-size: 26px;\n      background-color: white;\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  align-items: center;\n  height: 15%;\n  position: fixed;\n  background-color: white;\n  width: 100%; }\n  header #title {\n    font-size: 30px;\n    cursor: pointer; }\n  header div {\n    margin-left: 5%;\n    margin-right: 5%; }\n  header nav button, header nav input {\n    font-size: 22px; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    cursor: pointer;\n    margin-left: 2%;\n    margin-right: 2%;\n    margin-bottom: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n    .movieList .movie span {\n      color: grey;\n      font-weight: bold; }\n\n.modal {\n  display: flex;\n  justify-content: center; }\n  .modal div {\n    margin-left: 3%;\n    margin-right: 3%; }\n    .modal div .modalPoster {\n      height: 400px;\n      width: 250px; }\n  .modal .movieInformation div {\n    margin-bottom: 5%; }\n    .modal .movieInformation div span {\n      color: grey;\n      font-weight: bold; }\n  .modal .exitModal {\n    justify-content: flex-end; }\n    .modal .exitModal .exitModalButton {\n      border: none;\n      font-size: 26px;\n      background-color: white;\n      cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -25784,24 +25795,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var displayModal = exports.displayModal = function displayModal(bool, index) {
-  return {
-    type: 'DISPLAY_MODAL',
-    payload: bool,
-    payloadIndex: index
-  };
-};
-
-/***/ }),
+/* 241 */,
 /* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26813,45 +26807,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var allMovieLength = JSON.parse(localStorage.getItem('allMovies')).length;
-var initialState = [];
-
-for (var i = 0; i < allMovieLength; i += 1) {
-  initialState.push(false);
-}
-
-var displayModal = function displayModal(state, action) {
-  return state.map(function (display, i) {
-    if (action.payloadIndex === i) display = action.payload;
-    return display;
-  });
-};
-
-var modalReducer = function modalReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'DISPLAY_MODAL':
-      return displayModal(state, action);
-
-    default:
-      return state;
-  }
-};
-
-exports.default = modalReducer;
-
-/***/ }),
+/* 253 */,
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26866,7 +26822,7 @@ var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _modalActions = __webpack_require__(241);
+var _movieActions = __webpack_require__(87);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26875,7 +26831,6 @@ var MovieModal = function MovieModal(_ref) {
       dispatch = _ref.dispatch,
       index = _ref.index;
 
-  // console.log(movieInfo)
   var PosterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
 
   return _react2.default.createElement(
@@ -26940,7 +26895,7 @@ var MovieModal = function MovieModal(_ref) {
       _react2.default.createElement(
         'button',
         { className: 'exitModalButton', onClick: function onClick() {
-            return dispatch((0, _modalActions.displayModal)(false, index));
+            return dispatch((0, _movieActions.displayDetail)(false, index));
           } },
         'X'
       )

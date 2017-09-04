@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { displayModal } from './../action/modalActions';
+import { displayDetail } from './../action/movieActions';
 import MovieModal from './movieModal';
 
 const Movie = (props) => {
   const posterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
 
   return (
-    <div className="movie" onClick={ () => props.dispatch(displayModal(true, props.index)) }>
+    <div className="movie" onClick={ () => props.dispatch(displayDetail(true, props.index)) }>
 
-      <ReactModal isOpen={props.showModal[props.index]} contentLabel="Movie Detail Modal">
+      <ReactModal isOpen={props.movieInfo['showMoreDetail']} contentLabel="Movie Detail Modal">
         <MovieModal movieInfo={props.movieInfo} dispatch={props.dispatch} index={props.index} />
       </ReactModal>
 

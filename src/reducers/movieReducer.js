@@ -14,6 +14,13 @@ const searchMovie = (state, input) => {
   }
 }
 
+const displayDetail = (state, action) => {
+  return state.map((movieInfo, i) => {
+    if(action.payloadIndex === i) movieInfo['showMoreDetail'] = action.payload;
+    return movieInfo;
+  })
+}
+
 
 const movieReducer = (state=[], action) => {
   switch(action.type) {
@@ -22,6 +29,9 @@ const movieReducer = (state=[], action) => {
 
     case 'SET_INITIALSTATE':
       return action.payload;
+
+    case 'DISPLAY_DETAIL':
+      return displayDetail(state, action);
 
     default:
       return state;

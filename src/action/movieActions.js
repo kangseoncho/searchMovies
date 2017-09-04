@@ -1,5 +1,5 @@
 
-export const setInitialState = (url) => {
+export const setInitialMovieState = (url) => {
   return (dispatch) => {
     return fetch(url)
     .then(response => response.json())
@@ -18,5 +18,13 @@ export const searchMovie = (input) => {
   return {
     type: 'SEARCH_MOVIE',
     payload: input
+  }
+}
+
+export const displayDetail = (bool, index) => {
+  return {
+    type: 'DISPLAY_DETAIL',
+    payload: bool,
+    payloadIndex: index
   }
 }

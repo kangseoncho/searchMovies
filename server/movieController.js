@@ -11,16 +11,18 @@ const movieController = {
       .then(results => {
         const displayItems = ['id', 'title', 'poster_path', 'overview', 'release_date'];
 
-        const filteredData = results.map((movieData, i) => {
-          return Object.keys(movieData)
+        const filteredResult = results.map((movieData, i) => {
+          let filtered = Object.keys(movieData)
           .filter(key => displayItems.includes(key))
           .reduce((filteredObj, key) => {
             filteredObj[key] = movieData[key];
+            filteredObj['showMoreDetail'] = false;
             return filteredObj;
           }, {});
+          return filtered;
         })
 
-        res.json(filteredData);
+        res.json(filteredResult);
       })
   }
 }

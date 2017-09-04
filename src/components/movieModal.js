@@ -1,9 +1,8 @@
 import React from 'react';
-import { displayModal } from './../action/modalActions';
+import { displayDetail } from './../action/movieActions';
 
 
 const MovieModal = ({ movieInfo, dispatch, index }) => {
-  // console.log(movieInfo)
   const PosterUrlFirstPiece = 'https://image.tmdb.org/t/p/w500/';
 
   return (
@@ -26,7 +25,7 @@ const MovieModal = ({ movieInfo, dispatch, index }) => {
         </div>
       </div>
       <div className='exitModal'>
-        <button className="exitModalButton" onClick={() => dispatch(displayModal(false, index))}>X</button>
+        <button className="exitModalButton" onClick={() => dispatch(displayDetail(false, index))}>X</button>
       </div>
     </div>
   )
