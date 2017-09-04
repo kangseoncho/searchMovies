@@ -44,7 +44,6 @@ header {
   .movie {
     width: $imageWidth;
     cursor: pointer;
-
     margin: {
       left: $movieSideMargin;
       right: $movieSideMargin;
@@ -54,6 +53,11 @@ header {
     img {
       height: $imageHeight;
       width: $imageWidth;
+    }
+
+    span {
+      color: grey;
+      font-weight: bold;
     }
   }
 }

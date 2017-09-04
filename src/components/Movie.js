@@ -14,8 +14,8 @@ const Movie = (props) => {
       </ReactModal>
 
       <img src={posterUrlFirstPiece + props.movieInfo['poster_path']} className='poster'/> <br />
-      Title: {props.movieInfo.title} <br />
-      ID: {props.movieInfo.id} <br />
+      <span>Title:</span> {props.movieInfo.title} <br />
+      <span>ID:</span> {props.movieInfo.id} <br />
     </div>
   )
 }

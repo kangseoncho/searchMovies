@@ -25049,11 +25049,21 @@ var Movie = function Movie(props) {
     _react2.default.createElement('img', { src: posterUrlFirstPiece + props.movieInfo['poster_path'], className: 'poster' }),
     ' ',
     _react2.default.createElement('br', null),
-    'Title: ',
+    _react2.default.createElement(
+      'span',
+      null,
+      'Title:'
+    ),
+    ' ',
     props.movieInfo.title,
     ' ',
     _react2.default.createElement('br', null),
-    'ID: ',
+    _react2.default.createElement(
+      'span',
+      null,
+      'ID:'
+    ),
+    ' ',
     props.movieInfo.id,
     ' ',
     _react2.default.createElement('br', null)
@@ -25232,7 +25242,7 @@ exports = module.exports = __webpack_require__(238)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  align-items: center;\n  height: 15%;\n  position: fixed;\n  background-color: white;\n  width: 100%; }\n  header #title {\n    font-size: 30px;\n    cursor: pointer; }\n  header div {\n    margin-left: 5%;\n    margin-right: 5%; }\n  header nav button, header nav input {\n    font-size: 22px; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    cursor: pointer;\n    margin-left: 2%;\n    margin-right: 2%;\n    margin-bottom: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n\n.modal {\n  display: flex;\n  justify-content: center; }\n  .modal div {\n    margin-left: 3%;\n    margin-right: 3%; }\n    .modal div .modalPoster {\n      height: 100%;\n      width: 100%; }\n  .modal .movieInformation div {\n    margin-bottom: 5%; }\n    .modal .movieInformation div span {\n      color: grey;\n      font-weight: bold; }\n  .modal .exitModal {\n    justify-content: flex-end; }\n    .modal .exitModal .exitModalButton {\n      border: none;\n      font-size: 26px;\n      background-color: white;\n      cursor: pointer; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: helvetica, Arial, sans-serif; }\n\nheader {\n  display: flex;\n  align-items: center;\n  height: 15%;\n  position: fixed;\n  background-color: white;\n  width: 100%; }\n  header #title {\n    font-size: 30px;\n    cursor: pointer; }\n  header div {\n    margin-left: 5%;\n    margin-right: 5%; }\n  header nav button, header nav input {\n    font-size: 22px; }\n\n.movieList {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  padding-top: 15%; }\n  .movieList .movie {\n    width: 250px;\n    cursor: pointer;\n    margin-left: 2%;\n    margin-right: 2%;\n    margin-bottom: 2%; }\n    .movieList .movie img {\n      height: 400px;\n      width: 250px; }\n    .movieList .movie span {\n      color: grey;\n      font-weight: bold; }\n\n.modal {\n  display: flex;\n  justify-content: center; }\n  .modal div {\n    margin-left: 3%;\n    margin-right: 3%; }\n    .modal div .modalPoster {\n      height: 100%;\n      width: 100%; }\n  .modal .movieInformation div {\n    margin-bottom: 5%; }\n    .modal .movieInformation div span {\n      color: grey;\n      font-weight: bold; }\n  .modal .exitModal {\n    justify-content: flex-end; }\n    .modal .exitModal .exitModalButton {\n      border: none;\n      font-size: 26px;\n      background-color: white;\n      cursor: pointer; }\n", ""]);
 
 // exports
 
